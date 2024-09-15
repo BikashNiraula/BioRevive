@@ -1,4 +1,4 @@
-package com.whatever.biorevive.database
+package com.whatever.biorevive.database.face
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

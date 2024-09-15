@@ -1,4 +1,4 @@
-package com.whatever.biorevive.database
+package com.whatever.biorevive.database.face
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
@@ -12,5 +12,5 @@ import com.whatever.biorevive.FloatTypeConverter
 @TypeConverters(FloatTypeConverter::class)
 abstract class FaceDatabase:RoomDatabase() {
 
-    abstract val dao: FaceDao
+    abstract val faceDao: FaceDao
 }

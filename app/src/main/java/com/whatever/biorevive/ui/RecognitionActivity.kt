@@ -1,6 +1,7 @@
 package com.whatever.biorevive.ui
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Matrix
@@ -11,6 +12,7 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.OptIn
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ExperimentalGetImage
@@ -26,10 +28,14 @@ import androidx.core.content.ContextCompat
 import com.whatever.biorevive.FaceDetectionW
 import com.whatever.biorevive.FaceMatcher
 import com.whatever.biorevive.Facenet
-import com.whatever.biorevive.database.DatabaseManager
+import com.whatever.biorevive.database.attendance.AttendanceDatabaseManager
+import com.whatever.biorevive.database.attendance.StudentAttendance
+import com.whatever.biorevive.database.face.FaceDatabaseManager
 import com.whatever.biorevive.databinding.ActivityRecognitionBinding
+import com.whatever.biorevive.utils.generateTodayDate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -135,14 +141,29 @@ class RecognitionActivity : AppCompatActivity() {
 
                         val faceEmbedding = facenet.getFaceEmbedding(croppedImage)
                         val storedFaceEmbeddingList =
-                            DatabaseManager(applicationContext).database.dao.getFaceData()
+                            FaceDatabaseManager(applicationContext).faceDatabase.faceDao.getFaceData()
                         //Log.d("FaceEmbedding", "faceEmbedding:${storedFaceEmbeddingList[2].faceEmbedding}\nname:${storedFaceEmbeddingList[2].name} ")
                         val triple =
                             FaceMatcher().findNearest(storedFaceEmbeddingList, faceEmbedding)
-                        binding.imageView.setImageBitmap(croppedImage)
+                        //binding.imageView.setImageBitmap(croppedImage)
                         //Log.d("ImageAnalysis","The time taken for the analysis is ${System.currentTimeMillis() -t1}")
                         binding.tvFaceData.setText("name:${triple.first} rollNO:${triple.second} cosineSimilarity:${triple.third}")
                         imageProxy.close() // Make sure to close the image
+                        //delay(2000)
+                        if(triple.first!="unknown" && triple.second != "unknown"){
+                            //insert data of student into the Student attendance Table
+                            AttendanceDatabaseManager(applicationContext).attendanceDatabase.attendanceDao.insertStudentAttendance(
+                                StudentAttendance(name = triple.first, rollNo = triple.second, dateOfAttendance = generateTodayDate())
+                            )
+                            val numberOfStudentPresent = AttendanceDatabaseManager(applicationContext).attendanceDatabase.attendanceDao.getNumberOfStudentsPresent(
+                                generateTodayDate()
+                            )
+                            AttendanceDatabaseManager(applicationContext).attendanceDatabase.attendanceDao.updateNumberOfStudentsPresent(
+                                generateTodayDate(), numberOfStudentPresent
+                            )
+                            dialogWithStartAttendanceActivity()
+                        }
+
                     }
 
 
@@ -156,6 +177,21 @@ class RecognitionActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+    fun dialogWithStartAttendanceActivity(){
+        val alertDialog = AlertDialog.Builder(this)
+            .setTitle("!!Attendance!!")
+            .setMessage("Do you want to see your attendance?")
+            .setNegativeButton("No"){_,_->
+
+            }
+            .setCancelable(false)
+            .setPositiveButton("Yes"){_,_->
+                val intent = Intent(this@RecognitionActivity, AttendanceDateActivity::class.java)
+                startActivity(intent)
+            }
+            .show()
+
     }
 
     private fun requestPermissions() {

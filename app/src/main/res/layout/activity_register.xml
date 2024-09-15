@@ -44,4 +44,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_person_24" />
+
+    <ImageView
+        android:id="@+id/btnRegisterList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:contentDescription="Register List"
+        app:layout_constraintBottom_toTopOf="@+id/imageChoosen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageChoosen"
+        app:srcCompat="@drawable/baseline_list_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,7 @@
 package com.whatever.biorevive
 
 import android.util.Log
-import android.widget.Toast
-import com.whatever.biorevive.database.FaceData
+import com.whatever.biorevive.database.face.FaceData
 
 class FaceMatcher {
 
@@ -54,8 +53,9 @@ class FaceMatcher {
             }
         }
         //cosine threshold is 0.4f
-        if(cosineValue<0.4f){
-            ret = Triple("unknown face",
+        //cosine value is taken as 0.3f as this works better for us
+        if(cosineValue<0.30f){
+            ret = Triple("unknown",
                 "unknown",cosineValue)
         }
         return ret

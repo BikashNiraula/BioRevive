@@ -69,20 +69,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvRollNo" />
 
             <Button
-                android:id="@+id/btnDialogYes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="#2B45D7"
-                android:text="Yes"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnDialogCancel"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtRollNo" />
-
-            <Button
                 android:id="@+id/btnDialogCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -91,9 +77,23 @@
                 android:backgroundTint="#E11A1A"
                 android:text="Cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnDialogYes"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtRollNo" />
+
+            <Button
+                android:id="@+id/btnDialogYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#2B45D7"
+                android:text="Yes"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/btnDialogYes"
+                app:layout_constraintStart_toEndOf="@+id/btnDialogCancel"
                 app:layout_constraintTop_toBottomOf="@+id/edtRollNo" />
 
 

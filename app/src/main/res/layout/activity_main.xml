@@ -7,38 +7,38 @@
     tools:context=".ui.MainActivity">
 
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnAttendanceList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:text="Register"
+        android:text="Attendance List"
         android:textSize="34sp"
         app:cornerRadius="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnRecognize"
+        app:layout_constraintBottom_toTopOf="@+id/btnAttendance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <Button
-        android:id="@+id/btnRecognize"
+        android:id="@+id/btnAttendance"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:text="Recognize"
+        android:text="Attendance"
         android:textSize="34sp"
         app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAttendanceList" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -48,7 +48,7 @@
         app:layout_constraintGuide_percent="0.66" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imgMainImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
@@ -57,5 +57,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.506"
         app:srcCompat="@drawable/baseline_assignment_ind_24" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="Register"
+        app:layout_constraintBottom_toTopOf="@+id/imgMainImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgMainImage"
+        app:layout_constraintVertical_bias="0.849"
+        android:clickable="true"
+        app:srcCompat="@drawable/baseline_info_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

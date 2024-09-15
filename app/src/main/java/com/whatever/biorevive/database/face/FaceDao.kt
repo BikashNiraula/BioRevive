@@ -1,4 +1,4 @@
-package com.whatever.biorevive.database
+package com.whatever.biorevive.database.face
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -13,7 +13,7 @@ interface FaceDao {
     suspend fun insertFaceData(faceData: FaceData)
 
     @Delete
-    suspend fun deleterFaceData(faceData: FaceData)
+    suspend fun deleteFaceData(faceData: FaceData)
 
     @Query("SELECT * from facedata ORDER BY rollNo ASC")
     suspend fun getFaceData():List<FaceData>

@@ -24,8 +24,8 @@ import androidx.core.content.ContextCompat
 import com.whatever.biorevive.FaceDetectionW
 import com.whatever.biorevive.FacePresence
 import com.whatever.biorevive.Facenet
-import com.whatever.biorevive.database.DatabaseManager
-import com.whatever.biorevive.database.FaceData
+import com.whatever.biorevive.database.face.FaceDatabaseManager
+import com.whatever.biorevive.database.face.FaceData
 import com.whatever.biorevive.databinding.ActivityRegisterBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -56,7 +56,7 @@ class RegisterActivity : AppCompatActivity() {
                 bitmapImage = faceDetect.performFaceDetection(rotatedGalleryImageBitmap)
                 val faceEmbbeding = facenet.getFaceEmbedding(bitmapImage)
                 Log.i("FaceEmbedding", "${faceEmbbeding.contentToString()}")
-                Toast.makeText(this@RegisterActivity, "${faceEmbbeding.contentToString()}", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@RegisterActivity, "${faceEmbbeding.contentToString()}", Toast.LENGTH_LONG).show()
                 Log.d("Faces","bitmap Obtained in register activity inside coroutines:${bitmapImage == rotatedGalleryImageBitmap}")
                 binding.imageChoosen.setImageBitmap(bitmapImage)
 
@@ -70,7 +70,7 @@ class RegisterActivity : AppCompatActivity() {
                         //save face details to database
                         Log.d("Dialog","inside here")
                         val faceData = FaceData(name = faceNameList[0], rollNo = faceNameList[1], faceEmbbeding)
-                        DatabaseManager(applicationContext).database.dao.insertFaceData(faceData)
+                        FaceDatabaseManager(applicationContext).faceDatabase.faceDao.insertFaceData(faceData)
 
                     }
                 }
@@ -107,7 +107,7 @@ class RegisterActivity : AppCompatActivity() {
                         //save face details to database
                         Log.d("Dialog","inside here")
                         val faceData = FaceData(name = faceNameList[0], rollNo = faceNameList[1], faceEmbbeding)
-                        DatabaseManager(applicationContext).database.dao.insertFaceData(faceData)
+                        FaceDatabaseManager(applicationContext).faceDatabase.faceDao.insertFaceData(faceData)
 
                     }
                 }
@@ -122,7 +122,7 @@ class RegisterActivity : AppCompatActivity() {
             val list = mutableListOf<String>()
             dialog.yesButton.setOnClickListener {
                 val name = dialog.nameEditText.text.toString()
-                val rollNo = dialog.rollNoEditText.text.toString()
+                val rollNo = dialog.rollNoEditText.text.toString().uppercase()
                 list.add(name)
                 list.add(rollNo)
                 Toast.makeText(
@@ -158,6 +158,10 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
         //Initializing the face detector
 
+        binding.btnRegisterList.setOnClickListener{
+            val intent = Intent(this, RegisteredFacesListActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.btnInsertImage.setOnClickListener {
             val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
