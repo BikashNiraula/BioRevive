@@ -4,9 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.whatever.biorevive.database.attendance.AttendanceDate
 import com.whatever.biorevive.database.attendance.DateWithStudentAttendance
 import com.whatever.biorevive.databinding.CustomAttendanceDateBoxBinding
+import com.whatever.biorevive.utils.convertToSuitableDateFormat
 
 class AttendanceDateAdapter(
     private val attendanceDates:MutableList<DateWithStudentAttendance>,
@@ -26,7 +26,7 @@ class AttendanceDateAdapter(
     }
 
     override fun onBindViewHolder(holder: AttendanceDateAdapter.ViewHolder, position: Int) {
-        holder.binding.tvDate.text = attendanceDates[position].attendanceDate.date
+        holder.binding.tvDate.text = convertToSuitableDateFormat(attendanceDates[position].attendanceDate.date)
         holder.binding.tvAttendanceNumber.text = attendanceDates[position].attendanceDate.numberOfStudentsPresent.toString() + "/48"
         holder.itemView.setOnClickListener{
             OnItemClick?.invoke(attendanceDates[position])

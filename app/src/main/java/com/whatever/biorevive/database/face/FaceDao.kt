@@ -15,6 +15,9 @@ interface FaceDao {
     @Delete
     suspend fun deleteFaceData(faceData: FaceData)
 
+    @Delete
+    suspend fun deleteFaceDataList(faceDataList: List<FaceData>)
+
     @Query("SELECT * from facedata ORDER BY rollNo ASC")
     suspend fun getFaceData():List<FaceData>
 }

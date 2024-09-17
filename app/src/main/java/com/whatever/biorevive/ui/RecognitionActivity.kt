@@ -21,9 +21,6 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.video.Recorder
-import androidx.camera.video.Recording
-import androidx.camera.video.VideoCapture
 import androidx.core.content.ContextCompat
 import com.whatever.biorevive.FaceDetectionW
 import com.whatever.biorevive.FaceMatcher
@@ -35,7 +32,6 @@ import com.whatever.biorevive.databinding.ActivityRecognitionBinding
 import com.whatever.biorevive.utils.generateTodayDate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -72,10 +68,6 @@ class RecognitionActivity : AppCompatActivity() {
 
     private var imageCapture: ImageCapture? = null
 
-    private var videoCapture: VideoCapture<Recorder>? = null
-    private var recording: Recording? = null
-    private var isProcessing = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecognitionBinding.inflate(LayoutInflater.from(this))
@@ -104,10 +96,6 @@ class RecognitionActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
-    }
-
-    private fun captureVideo() {
-        TODO("Not yet implemented")
     }
 
     private fun takePhoto() {

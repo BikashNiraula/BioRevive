@@ -6,11 +6,10 @@ import androidx.room.PrimaryKey
 @Entity
 data class FaceData(
     val name:String,
+    @PrimaryKey(autoGenerate = false)
      val rollNo:String,
 
-     val faceEmbedding:FloatArray,
-    @PrimaryKey(true)
-    val id:Int = 0
+     val faceEmbedding:FloatArray
 )
 
 

@@ -8,6 +8,7 @@ import com.whatever.biorevive.database.attendance.AttendanceDatabaseManager
 import com.whatever.biorevive.database.attendance.AttendanceDate
 import com.whatever.biorevive.database.attendance.DateWithStudentAttendance
 import com.whatever.biorevive.databinding.ActivityAttendanceBinding
+import com.whatever.biorevive.utils.convertToSuitableDateFormat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,7 +38,7 @@ class AttendanceActivity : AppCompatActivity() {
                 this@AttendanceActivity)
             binding.rvAttendance.layoutManager = LinearLayoutManager(this@AttendanceActivity)
             binding.rvAttendance.adapter = customAdapter
-            binding.tvPresentStudentsList.text = "Present Students Of: ${studentAttendance.attendanceDate.date.toString()}"
+            binding.tvPresentStudentsList.text = "Present Students Of: ${convertToSuitableDateFormat(studentAttendance.attendanceDate.date.toString())}"
         }
 
 

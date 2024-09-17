@@ -2,7 +2,6 @@ package com.whatever.biorevive.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -10,10 +9,8 @@ import com.whatever.biorevive.database.attendance.AttendanceDatabaseManager
 import com.whatever.biorevive.database.attendance.AttendanceDate
 import com.whatever.biorevive.databinding.ActivityMainBinding
 import com.whatever.biorevive.utils.generateTodayDate
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.time.LocalDate
 
 
 class MainActivity : AppCompatActivity() {

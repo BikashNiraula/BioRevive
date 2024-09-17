@@ -3,15 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:backgroundTint="#00FFFFFF"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <androidx.cardview.widget.CardView
 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#B29835"
+        android:backgroundTint="@color/listColor"
         app:layout_constraintBottom_toBottomOf="parent"
-
+        android:background="@drawable/rounded_background"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,7 +27,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Enter the name of the face:"
+                android:text="Enter the name of the student:"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -39,6 +42,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:hint="Name"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -49,8 +53,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Enter the rollNo of the face:"
+                android:text="Enter the roll no of the student:"
                 android:textSize="20sp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -63,6 +68,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:hint="Roll No"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -88,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:backgroundTint="#2B45D7"
+                android:backgroundTint="#301A4B"
                 android:text="Yes"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

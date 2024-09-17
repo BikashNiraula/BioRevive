@@ -3,17 +3,10 @@ package com.whatever.biorevive.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.whatever.biorevive.R
 import com.whatever.biorevive.database.attendance.AttendanceDatabaseManager
-import com.whatever.biorevive.database.attendance.AttendanceDate
-import com.whatever.biorevive.database.face.FaceDatabaseManager
 import com.whatever.biorevive.databinding.ActivityAttendanceDateBinding
-import com.whatever.biorevive.ui.AttendanceDateAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
